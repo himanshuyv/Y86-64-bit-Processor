@@ -124,19 +124,25 @@ module fetch(icode,ifun,rA,rB,valC,valP,stat,PC,clk);
             valP = PC + 10;
         end
 
-        else if (icode==9)
+        else if(icode == 9)
+        begin
+            valP = PC+1;
+        end
+
+        else if (icode==10)
         begin
             rA <= instructionMem[PC+1][7:4];
             rB <= instructionMem[PC+1][3:0];
             valP = PC + 2;
         end   
          
-        else if (icode==10)
+        else if (icode==11)
         begin
             rA <= instructionMem[PC+1][7:4];
             rB <= instructionMem[PC+1][3:0];
             valP = PC + 2;
         end
+
     end
     
 endmodule

@@ -1,4 +1,4 @@
-module fetch(icode,ifun,rA,rB,valC,valP,stat,PC,clk);
+module fetch(icode,ifun,rA,rB,valC,valP,stat,PC);
     output reg [3:0] icode;
     output reg [3:0] ifun;
     output reg [3:0] rA;

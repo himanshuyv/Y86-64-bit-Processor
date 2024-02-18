@@ -6,7 +6,7 @@ module tb_ALU_Wrapper;
     reg [1:0] control;
     wire [63:0] out;
     wire OF;
-    ALU_wrapper DUT(OF,out,control,A,B);
+    ALU_Wrapper DUT(OF,out,control,A,B);
     initial begin
         $dumpfile("tb_ALU_Wrapper.vcd");
         $dumpvars(0,tb_ALU_Wrapper);

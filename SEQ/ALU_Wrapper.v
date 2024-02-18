@@ -8,7 +8,7 @@ and(C, s0, !s1);
 and(D, s0, s1);
 endmodule
 
-module ALU_wrapper(OF,out,control, A, B);
+module ALU_Wrapper(OF,out,control, A, B);
 input [1:0] control;
 input [63:0] A;
 input [63:0] B;

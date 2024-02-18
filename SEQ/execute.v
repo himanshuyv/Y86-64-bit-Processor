@@ -1,6 +1,6 @@
-`include "./ALU/ALU_Wrapper.v"
+`include "ALU_Wrapper.v"
 
-module execute(OF,ZF,SF,valE,valA,valB,valC,icode,ifun)
+module execute(OF,ZF,SF,valE,valA,valB,valC,icode,ifun);
     output reg [63:0] valE;
     output reg OF;
     output reg ZF;

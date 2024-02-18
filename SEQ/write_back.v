@@ -1,4 +1,4 @@
-module write_back(dstE, dstM, rA, rB, icode, reg_file, clk)
+module write_back(dstE, dstM, rA, rB, icode, clk)
 if(icode == 6 || icode == 2 || icode == 3)
 begin
     dstE <= rB;

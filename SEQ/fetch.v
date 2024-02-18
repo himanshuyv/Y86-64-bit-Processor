@@ -15,7 +15,7 @@ module fetch(icode,ifun,rA,rB,valC,valP,stat,PC,clk);
         stat <= 1;
     end
 
-    always @(posedge clk)
+    always @(*)
     begin
         icode <= instructionMem[PC][7:4];
         ifun <= instructionMem[PC][3:0];   
@@ -24,25 +24,25 @@ module fetch(icode,ifun,rA,rB,valC,valP,stat,PC,clk);
             stat<=3;
         end
 
-        if (icode==0)
+        if (icode==0 && ifun==0)
         begin
             valP = PC + 1;
             stat <= 2;
         end
         
-        else if (icode==1)
+        else if (icode==1 && ifun==0)
         begin
             valP = PC + 1;
         end   
          
-        else if (icode==2)
+        else if (icode==2 && (ifun>=0 && ifun<=6))
         begin
             rA <= instructionMem[PC+1][7:4];
             rB <= instructionMem[PC+1][3:0];
             valP = PC + 2;
         end   
          
-        else if (icode==3)
+        else if (icode==3 && ifun==0)
         begin
             rA <= instructionMem[PC+1][7:4];
             rB <= instructionMem[PC+1][3:0];
@@ -57,7 +57,7 @@ module fetch(icode,ifun,rA,rB,valC,valP,stat,PC,clk);
             valP = PC + 10;
         end   
          
-        else if (icode==4)
+        else if (icode==4 && ifun==0)
         begin
             rA <= instructionMem[PC+1][7:4];
             rB <= instructionMem[PC+1][3:0];
@@ -72,7 +72,7 @@ module fetch(icode,ifun,rA,rB,valC,valP,stat,PC,clk);
             valP = PC + 10;
         end   
          
-        else if (icode==5)
+        else if (icode==5 && ifun==0)
         begin
             rA <= instructionMem[PC+1][7:4];
             rB <= instructionMem[PC+1][3:0];
@@ -87,14 +87,14 @@ module fetch(icode,ifun,rA,rB,valC,valP,stat,PC,clk);
             valP = PC + 10;
         end   
          
-        else if (icode==6)
+        else if (icode==6 && (ifun>=0 && ifun<=3))
         begin
             rA <= instructionMem[PC+1][7:4];
             rB <= instructionMem[PC+1][3:0];
             valP = PC + 2;
         end   
          
-        else if (icode==7)
+        else if (icode==7 && (ifun>=0 && ifun<=6))
         begin
             rA <= instructionMem[PC+1][7:4];
             rB <= instructionMem[PC+1][3:0];
@@ -109,7 +109,7 @@ module fetch(icode,ifun,rA,rB,valC,valP,stat,PC,clk);
             valP = PC + 10;
         end   
          
-        else if (icode==8)
+        else if (icode==8 && ifun==0)
         begin
             rA <= instructionMem[PC+1][7:4];
             rB <= instructionMem[PC+1][3:0];
@@ -124,24 +124,29 @@ module fetch(icode,ifun,rA,rB,valC,valP,stat,PC,clk);
             valP = PC + 10;
         end
 
-        else if(icode == 9)
+        else if(icode == 9 && ifun==0)
         begin
             valP = PC+1;
         end
 
-        else if (icode==10)
+        else if (icode==10 && ifun==0)
         begin
             rA <= instructionMem[PC+1][7:4];
             rB <= instructionMem[PC+1][3:0];
             valP = PC + 2;
         end   
          
-        else if (icode==11)
+        else if (icode==11 && ifun==0)
         begin
             rA <= instructionMem[PC+1][7:4];
             rB <= instructionMem[PC+1][3:0];
             valP = PC + 2;
         end
+
+        else
+        begin
+            stat <= 4;
+        end        
 
     end
     

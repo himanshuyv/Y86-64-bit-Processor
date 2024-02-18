@@ -7,7 +7,7 @@ module tb_fetch;
     wire [3:0] rB;
     wire [63:0] valC;
     wire [63:0] valP;
-    wire [7:0] stat;
+    wire [3:0] stat;
     reg [63:0] PC;
     reg clk;
     fetch DUT(icode,ifun,rA,rB,valC,valP,stat,PC,clk);
@@ -21,28 +21,18 @@ module tb_fetch;
         clk = ~clk;
         #5;
     end
-    
+
+    always @(posedge clk)
+    begin
+        PC <= valP;
+    end
+
     initial begin
         clk <=0;
         PC <= 0;
-        #20
-        PC <= valP;
-        #20
-        PC <= valP;
-        #20
-        PC <= valP;
-        #10
-        PC <= valP;
-        #10
-        PC <= valP;
-        #10
-        PC <= valP;
-        #10
-        PC <= valP;
-        #10
-        PC <= valP;
-        #10
+        #300
         $finish;
     end
+
 
 endmodule

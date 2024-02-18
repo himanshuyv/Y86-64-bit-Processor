@@ -12,11 +12,19 @@ module decode(valA, valB, rA, rB, icode, clk)
         end
         if(icode == 10 || icode == 11 || icode == 8 || icode == 9)
         begin
-            scrB <= rsp;
+            scrB <= b'0100;
         end
         if(icode == 11 || icode == 9)
         begin
-            srcA <= rsp;
+            srcA <= b'0100;
+        end
+        if(icode == 0 || icode == 1 || icode == 3|| icode == 5 || icode == 7 || icode == 8)
+        begin
+            scrA <= 1111;
+        end
+        if(icode == 0 || icode == 1 || icode == 2 ||icode == 7 || icode == 8 || icode == 10)
+        begin 
+            srcB <=1111;
         end
     end
 

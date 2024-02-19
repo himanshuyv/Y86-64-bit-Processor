@@ -2,6 +2,8 @@
 `include "decode.v"
 `include "execute.v"
 `include "write_back.v"
+`include "data_memory.v"
+`include "PC_update.v"
 
 
 module processor(PC, clk);

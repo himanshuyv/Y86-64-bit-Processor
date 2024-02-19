@@ -1,4 +1,4 @@
-module(icode, valP, valC, valM, Cnd, PC, clk);
+module PC_update(icode, valP, valC, valM, Cnd, PC, clk);
     input [3:0] icode;
     input clk;
     input reg [63:0] valC;

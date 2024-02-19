@@ -19,7 +19,7 @@ input wire [63:0] PC;
     wire [63:0] var_valA;
     wire [63:0] var_valP;
     wire [63:0] var_valE;
-    memory X5(var_valM, var_dmemError, var_valA, var_valP, var_valE, var_icode);
+    data_memory X5(var_valM, var_dmemError, var_valA, var_valP, var_valE, var_icode);
     wire [63:0] PC; 
     wire [3:0] icode; 
     wire [3:0] ifun; 

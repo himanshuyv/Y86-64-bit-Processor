@@ -1,4 +1,4 @@
-module decode(srcA, srcB, rA, rB, icode, clk);
+module decode(srcA, srcB, rA, rB, icode);
     input reg [3:0] icode;
     input reg [63:0] rA;
     input reg [63:0] rB;

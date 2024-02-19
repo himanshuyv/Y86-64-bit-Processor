@@ -7,10 +7,11 @@ module tb_fetch;
     wire [3:0] rB;
     wire [63:0] valC;
     wire [63:0] valP;
-    wire [3:0] stat;
+    wire instr_valid;
+    wire imem_error;
     reg [63:0] PC;
     reg clk;
-    fetch DUT(icode,ifun,rA,rB,valC,valP,stat,PC);
+    fetch DUT(icode,ifun,rA,rB,valC,valP,instr_valid,imem_error,PC);
     
     initial begin
         $dumpfile("tb_fetch.vcd");

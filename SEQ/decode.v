@@ -1,9 +1,9 @@
 module decode(srcA, srcB, rA, rB, icode);
     input reg [3:0] icode;
-    input reg [63:0] rA;
-    input reg [63:0] rB;
-    output reg [63:0] srcA;
-    output reg [63:0] scrB;
+    input reg [3:0] rA;
+    input reg [3:0] rB;
+    output reg [3:0] srcA;
+    output reg [3:0] scrB;
 
     always @(*)
     begin

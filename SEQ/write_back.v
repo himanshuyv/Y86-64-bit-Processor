@@ -1,9 +1,9 @@
 module write_back(dstE, dstM, rA, rB, icode);
     input reg [3:0] icode;
-    input reg [63:0] rA;
-    input reg [63:0] rB;
-    output reg [63:0] dstE;
-    output reg [63:0] dstM;
+    input reg [3:0] rA;
+    input reg [3:0] rB;
+    output reg [3:0] dstE;
+    output reg [3:0] dstM;
 
     always @(*) begin
         if(icode == 6 || icode == 2 || icode == 3)

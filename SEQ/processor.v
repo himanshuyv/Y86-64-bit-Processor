@@ -3,6 +3,7 @@
 `include "execute.v"
 `include "data_memory.v"
 `include "write_back.v"
+`include "data_memory.v"
 `include "PC_update.v"
 
 

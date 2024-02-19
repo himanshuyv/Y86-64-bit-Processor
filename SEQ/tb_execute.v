@@ -42,6 +42,12 @@ module tb_execute;
         #10
         ifun <= 1;
         #10
+        valB <= 5;
+        #10
+        valB <= 7;
+        #10
+        valB <= 1;
+        #10
         ifun <= 2;
         #10
         ifun <= 3;

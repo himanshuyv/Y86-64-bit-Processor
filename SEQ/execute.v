@@ -5,14 +5,24 @@ module execute(OF,ZF,SF,valE,valA,valB,valC,icode,ifun);
     output reg OF;
     output reg ZF;
     output reg SF;
-    input wire [63:0] valA;
-    input wire [63:0] valB;
-    input wire [63:0] valC;
-    input wire [3:0] icode;
-    input wire [3:0] ifun;
-    wire [63:0] aluA;
-    wire [63:0] aluB;
-    wire [3:0] aluFun;
+    input [63:0] valA;
+    input [63:0] valB;
+    input [63:0] valC;
+    input [3:0] icode;
+    input [3:0] ifun;
+    wire [63:0] aluOut;
+    wire aluOF;
+    reg [63:0] aluA;
+    reg [63:0] aluB;
+    reg [1:0] aluFun;
+
+    ALU_Wrapper X1(aluOF,aluOut,aluFun,aluA,aluB);
+    
+    initial begin
+        OF <= 0;
+        ZF <= 0;
+        SF <= 0;
+    end
 
     always @(*)
     begin
@@ -44,23 +54,32 @@ module execute(OF,ZF,SF,valE,valA,valB,valC,icode,ifun);
 
         if (icode == 6)
         begin 
-            aluFun = ifun;
+            aluFun = ifun[1:0];
         end
         else
         begin
             aluFun = 0;
         end
 
-        ALU_Wrapper X1(OF,valE,aluFun,aluA,aluB);
+        valE <= aluOut;
+        OF <= aluOF;
 
         if (valE[63] == 1)
         begin
             SF = 1;
         end
+        else
+        begin
+            SF = 0;    
+        end
 
         if (valE == 0)
         begin
             ZF = 1;
+        end
+        else
+        begin
+            ZF = 0;    
         end
     end
 

@@ -4,8 +4,9 @@
 `include "write_back.v"
 
 
-module processor(PC, clk)
+module processor(PC, clk);
 input wire [63:0] PC;
+input clk;
     reg [63:0] reg_file[15:0];
     genvar i;
         generate
@@ -14,12 +15,13 @@ input wire [63:0] PC;
             end
         endgenerate
     wire [63:0] var_valM;
-    wire reg var_dmemError;
+    wire var_dmemError;
     wire [3:0] var_icode;
     wire [63:0] var_valA;
+    wire [2:0] var_stat;
     wire [63:0] var_valP;
     wire [63:0] var_valE;
-    data_memory X5(var_valM, var_dmemError, var_valA, var_valP, var_valE, var_icode);
+    data_memory X5(var_valM, var_dmemError, var_stat, var_valA, var_valP, var_valE, var_icode);
     wire [63:0] PC; 
     wire [3:0] icode; 
     wire [3:0] ifun; 
@@ -39,7 +41,7 @@ input wire [63:0] PC;
     wire instr_valid;
     wire imem_error;
     wire dmemError;
-    always @(clk)
+    always @(*)
     begin
         fetch X1(icode,ifun,rA,rB,valC,valP,instr_valid,imem_error,PC);
         decode X2(srcA, srcB, rA, rB, icode);
@@ -55,6 +57,6 @@ input wire [63:0] PC;
         write_back X5(dstE, dstM, rA, rB, icode);
         reg_file[dstE] <= valE;
         reg_file[dstM] <= valM;
-        PC_update X6(icode, valP, valC, valM, OF, ZF, SF, PC);
+        PC_update X6(icode, valP, valC, valM, Cnd, PC, clk);
     end
 endmodule

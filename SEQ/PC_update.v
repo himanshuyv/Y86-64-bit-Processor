@@ -1,12 +1,10 @@
-module(icode, valP, valC, valM, OF, ZF, SF, PC);
+module(icode, valP, valC, valM, PC, Cnd);
 input [3:0] icode;
 input reg [63:0] valC;
 input reg [63:0] valP;
 input reg [63:0] valM;
 input wire [63:0] PC;
-input reg OF;
-input reg ZF;
-input reg SF;
+input reg Cnd;
     if(icode == 7)
     begin
         if(Cnd)

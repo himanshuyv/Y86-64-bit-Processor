@@ -1,12 +1,12 @@
-module(icode, valP, valC, valM, Cnd, PC, clk);
+module PC_update(PC, icode, valP, valC, valM, Cnd, clk);
+    output reg [63:0] PC;
     input [3:0] icode;
     input clk;
-    input reg [63:0] valC;
-    input reg [63:0] valP;
-    input reg [63:0] valM;
-    input wire [63:0] PC;
-    input reg Cnd;
-    always @(clk)
+    input [63:0] valC;
+    input [63:0] valP;
+    input [63:0] valM;
+    input Cnd;
+    always @(posedge clk)
     begin
         if(icode == 7)
         begin

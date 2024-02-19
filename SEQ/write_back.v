@@ -1,9 +1,9 @@
 module write_back(dstE, dstM, rA, rB, icode);
-    input reg [3:0] icode;
-    input reg [3:0] rA;
-    input reg [3:0] rB;
     output reg [3:0] dstE;
     output reg [3:0] dstM;
+    input [3:0] icode;
+    input [3:0] rA;
+    input [3:0] rB;
 
     always @(*) begin
         if(icode == 6 || icode == 2 || icode == 3)
@@ -20,11 +20,11 @@ module write_back(dstE, dstM, rA, rB, icode);
         end
         if(icode == 0 || icode == 1 || icode == 4 || icode == 5 || icode == 6 || icode == 7)
         begin
-            dstE <= b'1111;
+            dstE <= 15;
         end
         if(icode == 0 || icode == 1 || icode == 2 || icode == 3 || icode == 4 || icode == 6 || icode == 7 || icode == 8 || icode == 9 || icode == 10)
         begin
-            dstM <= b'1111;
+            dstM <= 15;
         end
     end
 endmodule

@@ -2,15 +2,13 @@
 
 module tb_execute;
     wire [63:0] valE;
-    wire OF;
-    wire ZF;
-    wire SF;
+    wire Cnd;
     reg [63:0] valA;
     reg [63:0] valB;
     reg [63:0] valC;
     reg [3:0] icode;
     reg [3:0] ifun;
-    execute DUT(OF,ZF,SF,valE,valA,valB,valC,icode,ifun);
+    execute DUT(Cnd,valE,valA,valB,valC,icode,ifun);
     
     initial begin
         $dumpfile("tb_execute.vcd");
@@ -52,6 +50,97 @@ module tb_execute;
         #10
         ifun <= 3;
         #10
+        icode <= 2;
+        ifun <= 0;
+        valA <= 0;
+        #10
+        ifun <= 1;
+        valA <= 1;
+        #10
+        valA <= 0;
+        #10 
+        valA <= -1;
+        #10
+        ifun <= 2;
+        valA <= 1;
+        #10
+        valA <= 0;
+        #10 
+        valA <= -1;
+        #10
+        ifun <= 3;
+        valA <= 1;
+        #10
+        valA <= 0;
+        #10 
+        valA <= -1;
+        #10
+        ifun <= 4;
+        valA <= 1;
+        #10
+        valA <= 0;
+        #10 
+        valA <= -1;
+        #10
+        ifun <= 5;
+        valA <= 1;
+        #10
+        valA <= 0;
+        #10 
+        valA <= -1;
+        #10
+        ifun <= 6;
+        valA <= 1;
+        #10
+        valA <= 0;
+        #10 
+        valA <= -1;
+        #10
+        icode <= 7;
+        ifun <= 0;
+        valA <= 0;
+        #10
+        ifun <= 1;
+        valA <= 1;
+        #10
+        valA <= 0;
+        #10 
+        valA <= -1;
+        #10
+        ifun <= 2;
+        valA <= 1;
+        #10
+        valA <= 0;
+        #10 
+        valA <= -1;
+        #10
+        ifun <= 3;
+        valA <= 1;
+        #10
+        valA <= 0;
+        #10 
+        valA <= -1;
+        #10
+        ifun <= 4;
+        valA <= 1;
+        #10
+        valA <= 0;
+        #10 
+        valA <= -1;
+        #10
+        ifun <= 5;
+        valA <= 1;
+        #10
+        valA <= 0;
+        #10 
+        valA <= -1;
+        #10
+        ifun <= 6;
+        valA <= 1;
+        #10
+        valA <= 0;
+        #10 
+        valA <= -1;
         $finish;
     end
 

@@ -41,7 +41,8 @@ module data_memory(valM, stat, valA, valP, valE, icode, instr_valid, imem_error)
         begin
             stat <= 3;
         end
-        else if(imem_error == 1 || dmemError == 1)
+
+        if(imem_error == 1 || dmemError == 1)
         begin
             stat <= 2;
         end

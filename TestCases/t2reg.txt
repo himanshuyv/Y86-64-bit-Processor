@@ -1,0 +1,31 @@
+sum:
+    irmovq $8,%r8
+    irmovq $1,%r9
+    xorq %rax,%rax
+    andq %rsi,%rsi
+    jmp test
+loop:
+    mrmovq (%rdi),%r10
+    addq %r10,%rax
+    addq %r8,%rdi
+    subq %r9,%rsi
+test:
+    jne loop
+    ret
+ 
+
+   0x0000:                      | sum:
+  0x0000: 30f80800000000000000 |     irmovq $8,%r8
+  0x000a: 30f90100000000000000 |     irmovq $1,%r9
+  0x0014: 6300                 |     xorq %rax,%rax
+  0x0016: 6266                 |     andq %rsi,%rsi
+  0x0018: 703100000000000000   |     jmp test
+  0x0021:                      | loop:
+  0x0021: 50a70000000000000000 |     mrmovq (%rdi),%r10
+  0x002b: 60a0                 |     addq %r10,%rax
+  0x002d: 6087                 |     addq %r8,%rdi
+  0x002f: 6196                 |     subq %r9,%rsi
+  0x0031:                      | test:
+  0x0031: 742100000000000000   |     jne loop
+  0x003a: 90                   |     ret
+                               |  

@@ -55,7 +55,25 @@ module execute(Cnd,valE,valA,valB,valC,icode,ifun);
 
         if (icode == 6)
         begin 
+            OF = aluOF;
             aluFun = ifun[1:0];
+            if (aluOut[63] == 1)
+            begin
+                SF = 1;
+            end
+            else
+            begin
+                SF = 0;    
+            end
+
+            if (aluOut == 0)
+            begin
+                ZF = 1;
+            end
+            else
+            begin
+                ZF = 0;    
+            end
         end
         else
         begin
@@ -63,25 +81,6 @@ module execute(Cnd,valE,valA,valB,valC,icode,ifun);
         end
 
         valE = aluOut;
-        OF = aluOF;
-
-        if (valE[63] == 1)
-        begin
-            SF = 1;
-        end
-        else
-        begin
-            SF = 0;    
-        end
-
-        if (valE == 0)
-        begin
-            ZF = 1;
-        end
-        else
-        begin
-            ZF = 0;    
-        end
 
         if (icode == 2 || icode == 7)
         begin
@@ -103,15 +102,15 @@ module execute(Cnd,valE,valA,valB,valC,icode,ifun);
             end
             else if (ifun == 4)
             begin
-                Cnd = !ZF;
+                Cnd = ~ZF;
             end
             else if (ifun == 5)
             begin
-                Cnd = !(SF^OF);
+                Cnd = ~(SF^OF);
             end
             else if (ifun == 6)
             begin
-                Cnd = !(SF^OF)&!ZF;
+                Cnd = ~(SF^OF) & ~ZF;
             end
         end
         else

@@ -14,41 +14,41 @@ module data_memory(valM, stat, valA, valP, valE, icode, instr_valid, imem_error)
     begin
         if(icode == 10 || icode == 8)
         begin
-            mem_address <= valE;
+            mem_address = valE;
         end
         else if(icode == 11 || icode == 9)
         begin 
-            mem_address <= valA;
+            mem_address = valA;
         end
-        dmemError <=0;
+        dmemError =0;
         if(mem_address > 8191)
         begin
-            dmemError <= 1;
+            dmemError = 1;
         end
         if(icode == 10 || icode == 8)
         begin
-            memReg[valE] <= valP;
+            memReg[valE] = valP;
         end
         else if(icode == 11 || icode == 9)
         begin 
-            valM <= memReg[valA];
+            valM = memReg[valA];
         end
         if(instr_valid == 1)
         begin
-            stat <= 1;
+            stat = 1;
         end
         else if(instr_valid == 0)
         begin
-            stat <= 3;
+            stat = 3;
         end
 
         if(imem_error == 1 || dmemError == 1)
         begin
-            stat <= 2;
+            stat = 2;
         end
         if(icode == 0)
         begin
-            stat <= 4;
+            stat = 4;
         end
     end
 endmodule

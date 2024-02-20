@@ -14,27 +14,27 @@ module instructionMemory(valRead0,valRead1,valRead2,valRead3,valRead4,valRead5,v
     reg [7:0] instructionMem [0:131];
     initial
     begin
-        $readmemb("./../TestCases/fetch.txt",instructionMem);
+        $readmemb("./../SampleTestCase/1.txt",instructionMem);
     end
     always @(*)
     begin
-        imem_error <= 0;
+        imem_error = 0;
         if (PC>131)
         begin
-            imem_error <= 1;
+            imem_error = 1;
         end
         else
         begin
-            valRead0 <= instructionMem[PC];
-            valRead1 <= instructionMem[PC+1];
-            valRead2 <= instructionMem[PC+2];
-            valRead3 <= instructionMem[PC+3];
-            valRead4 <= instructionMem[PC+4];
-            valRead5 <= instructionMem[PC+5];
-            valRead6 <= instructionMem[PC+6];
-            valRead7 <= instructionMem[PC+7];
-            valRead8 <= instructionMem[PC+8];
-            valRead9 <= instructionMem[PC+9];
+            valRead0 = instructionMem[PC];
+            valRead1 = instructionMem[PC+1];
+            valRead2 = instructionMem[PC+2];
+            valRead3 = instructionMem[PC+3];
+            valRead4 = instructionMem[PC+4];
+            valRead5 = instructionMem[PC+5];
+            valRead6 = instructionMem[PC+6];
+            valRead7 = instructionMem[PC+7];
+            valRead8 = instructionMem[PC+8];
+            valRead9 = instructionMem[PC+9];
         end
     end
 

@@ -14,7 +14,7 @@ module processor;
     generate
         for (i=0; i<16;i = i+1)begin
             initial begin
-                reg_file[i] <= i;
+                reg_file[i] = i;
             end
         end
     endgenerate

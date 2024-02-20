@@ -12,24 +12,24 @@ module PC_update(PC, icode, valP, valC, valM, Cnd, clk);
         begin
             if(Cnd == 1)
             begin
-                PC<=valC;
+                PC=valC;
             end
             else
             begin
-                PC <= valP;
+                PC = valP;
             end
         end
         else if(icode == 8)
         begin 
-            PC <= valC;
+            PC = valC;
         end
         else if(icode == 9)
         begin
-            PC<=valM;
+            PC=valM;
         end
         else
         begin
-            PC <= valP;
+            PC = valP;
         end
     end
 endmodule

@@ -20,9 +20,9 @@ module execute(Cnd,valE,valA,valB,valC,icode,ifun);
     ALU_Wrapper X1(aluOF,aluOut,aluFun,aluA,aluB);
     
     initial begin
-        OF <= 0;
-        ZF <= 0;
-        SF <= 0;
+        OF = 0;
+        ZF = 0;
+        SF = 0;
     end
 
     always @(*)
@@ -62,8 +62,8 @@ module execute(Cnd,valE,valA,valB,valC,icode,ifun);
             aluFun = 0;
         end
 
-        valE <= aluOut;
-        OF <= aluOF;
+        valE = aluOut;
+        OF = aluOF;
 
         if (valE[63] == 1)
         begin
@@ -87,36 +87,36 @@ module execute(Cnd,valE,valA,valB,valC,icode,ifun);
         begin
             if (ifun == 0)
             begin
-                Cnd <= 1;
+                Cnd = 1;
             end
             else if (ifun == 1)
             begin
-                Cnd <= (SF^OF)|ZF;
+                Cnd = (SF^OF)|ZF;
             end
             else if (ifun == 2)
             begin
-                Cnd  <= SF^OF;
+                Cnd  = SF^OF;
             end
             else if (ifun == 3)
             begin
-                Cnd <= ZF;
+                Cnd = ZF;
             end
             else if (ifun == 4)
             begin
-                Cnd <= !ZF;
+                Cnd = !ZF;
             end
             else if (ifun == 5)
             begin
-                Cnd <= !(SF^OF);
+                Cnd = !(SF^OF);
             end
             else if (ifun == 6)
             begin
-                Cnd <= !(SF^OF)&!ZF;
+                Cnd = !(SF^OF)&!ZF;
             end
         end
         else
         begin
-            Cnd <= 0;
+            Cnd = 0;
         end
 
     end

@@ -11,23 +11,23 @@ module decode(srcA, srcB, rA, rB, icode);
         begin
             srcA <= rA;
         end
-        if(icode == 3 || icode == 4 || icode == 5 || icode == 6)
-        begin
-            srcB <= rB;
-        end
-        if(icode == 10 || icode == 11 || icode == 8 || icode == 9)
-        begin
-            srcB <= 4;
-        end
-        if(icode == 11 || icode == 9)
+        else if(icode == 11 || icode == 9)
         begin
             srcA <= 4;
         end
-        if(icode == 0 || icode == 1 || icode == 3|| icode == 5 || icode == 7 || icode == 8)
+        else
         begin
             srcA <= 15;
         end
-        if(icode == 0 || icode == 1 || icode == 2 ||icode == 7 || icode == 8 || icode == 10)
+        if(icode == 4 || icode == 5 || icode == 6)
+        begin
+            srcB <= rB;
+        end
+        else if(icode == 10 || icode == 11 || icode == 8 || icode == 9)
+        begin
+            srcB <= 4;
+        end
+        else
         begin 
             srcB <= 15;
         end

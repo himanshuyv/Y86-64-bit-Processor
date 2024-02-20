@@ -9,27 +9,27 @@ module decode(srcA, srcB, rA, rB, icode);
     begin
         if(icode == 2 || icode ==4 || icode == 6 || icode == 10)
         begin
-            srcA <= rA;
+            srcA = rA;
         end
         else if(icode == 11 || icode == 9)
         begin
-            srcA <= 4;
+            srcA = 4;
         end
         else
         begin
-            srcA <= 15;
+            srcA = 15;
         end
         if(icode == 4 || icode == 5 || icode == 6)
         begin
-            srcB <= rB;
+            srcB = rB;
         end
         else if(icode == 10 || icode == 11 || icode == 8 || icode == 9)
         begin
-            srcB <= 4;
+            srcB = 4;
         end
         else
         begin 
-            srcB <= 15;
+            srcB = 15;
         end
     end
 

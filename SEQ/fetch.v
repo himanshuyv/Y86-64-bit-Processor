@@ -1,6 +1,6 @@
 `include "instructionMemory.v"
 
-module fetch(icode,ifun,rA,rB,valC,valP,instr_valid,imem_error,PC);
+module fetch(icode,ifun,rA,rB,valC,valP,instr_valid,imem_error,clk,PC);
     output reg [3:0] icode;
     output reg [3:0] ifun;
     output reg [3:0] rA;
@@ -9,16 +9,20 @@ module fetch(icode,ifun,rA,rB,valC,valP,instr_valid,imem_error,PC);
     output reg [63:0] valP;
     output reg instr_valid;
     output reg imem_error;
+    input clk;
     input wire [63:0] PC;
     reg need_regids;
     reg need_valC;
     wire [7:0] im_out [0:9];
     wire imem_errorw;
-    reg [63:0] iPC;
-    instructionMemory X1(im_out[0],im_out[1],im_out[2],im_out[3],im_out[4],im_out[5],im_out[6],im_out[7],im_out[8],im_out[9],imem_errorw,iPC);
-    always @(*)
+    initial
     begin
-        iPC = PC;
+        valP <= 0;
+    end
+
+    instructionMemory X1(im_out[0],im_out[1],im_out[2],im_out[3],im_out[4],im_out[5],im_out[6],im_out[7],im_out[8],im_out[9],imem_errorw,PC);
+    always @(posedge clk)
+    begin
         icode <= im_out[0][7:4];
         ifun <= im_out[0][3:0];   
         imem_error <= imem_errorw;
@@ -54,7 +58,7 @@ module fetch(icode,ifun,rA,rB,valC,valP,instr_valid,imem_error,PC);
         end
 
 
-        valP = PC + 1 + need_regids + 8*need_valC;
+        valP <= PC + 1 + need_regids + 8*need_valC;
         
         if ((icode == 0 || icode == 1 || icode == 3 || icode == 4 || icode == 5||icode == 8 || icode == 9 || icode == 10 || icode == 11) && ifun!=0)
         begin

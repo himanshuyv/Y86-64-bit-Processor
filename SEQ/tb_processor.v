@@ -15,7 +15,7 @@ module tb_processor;
     end
 
     initial begin
-        clk <= 0;
+        clk <= 1;
         #300
         $finish;
     end

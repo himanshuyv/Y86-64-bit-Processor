@@ -6,7 +6,7 @@ module PC_update(PC, icode, valP, valC, valM, Cnd, clk);
     input [63:0] valP;
     input [63:0] valM;
     input Cnd;
-    always @(posedge clk)
+    always @(*)
     begin
         if(icode == 7)
         begin

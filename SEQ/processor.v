@@ -21,6 +21,7 @@ module processor(clk);
     initial
     begin
         PC <= 0;
+        stat <= 1;
     end
     wire [3:0] f_icode; 
     wire [3:0] f_ifun; 
@@ -38,7 +39,7 @@ module processor(clk);
     reg [63:0] valP;
     reg instr_valid;
     reg imem_error;
-    fetch X1(f_icode,f_ifun,f_rA,f_rB,f_valC,f_valP,f_instr_valid,f_imem_error,PC);
+    fetch X1(f_icode,f_ifun,f_rA,f_rB,f_valC,f_valP,f_instr_valid,f_imem_error,clk,PC);
     wire [3:0] srcA;
     wire [3:0] srcB;
     decode X2(srcA, srcB, rA, rB, icode);
@@ -59,7 +60,7 @@ module processor(clk);
     write_back X5(wb_dstE, wb_dstM, rA, rB, icode);
     wire [63:0] pu_PC;
     PC_update X6(pu_PC, icode, valP, valC, valM, Cnd, clk);
-    always @(*)
+    always @(posedge clk)
     begin
         icode <= f_icode;
         ifun <= f_ifun;
@@ -77,6 +78,9 @@ module processor(clk);
         stat <= dm_stat;
         reg_file[wb_dstE] <= valE;
         reg_file[wb_dstM] <= valM;
+    end
+    always @(negedge clk)
+    begin
         PC <= pu_PC;
     end
 endmodule

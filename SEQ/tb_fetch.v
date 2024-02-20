@@ -11,7 +11,7 @@ module tb_fetch;
     wire imem_error;
     reg [63:0] PC;
     reg clk;
-    fetch DUT(icode,ifun,rA,rB,valC,valP,instr_valid,imem_error,PC);
+    fetch DUT(icode,ifun,rA,rB,valC,valP,instr_valid,imem_error,clk,PC);
     
     initial begin
         $dumpfile("tb_fetch.vcd");
@@ -23,13 +23,13 @@ module tb_fetch;
         #5;
     end
 
-    always @(posedge clk)
+    always @(negedge clk)
     begin
         PC <= valP;
     end
 
     initial begin
-        clk <=0;
+        clk <= 0;
         PC <= 0;
         #300
         $finish;

@@ -1,6 +1,7 @@
-module data_memory(valM, stat, valA, valP, valE, icode, instr_valid, imem_error);
+module data_memory(valM, stat, valA, valP, valE, icode, instr_valid, imem_error, clk);
     output reg [2:0] stat;
     output reg [63:0] valM;
+    input clk;
     input [63:0] valA;
     input [63:0] valP;
     input [63:0] valE;
@@ -9,6 +10,14 @@ module data_memory(valM, stat, valA, valP, valE, icode, instr_valid, imem_error)
     input imem_error;
     reg dmemError;
     reg [63:0] memReg[0:8191];
+    genvar i;
+    generate
+        for (i=0; i<64;i = i+1)begin
+            initial begin
+                memReg[i] = 0;
+            end
+        end
+    endgenerate
     reg [63:0] mem_address;
     always @(*)
     begin

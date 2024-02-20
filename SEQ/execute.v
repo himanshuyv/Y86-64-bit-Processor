@@ -1,8 +1,9 @@
 `include "ALU_Wrapper.v"
 
-module execute(Cnd,valE,valA,valB,valC,icode,ifun);
+module execute(Cnd,valE,valA,valB,valC,icode,ifun, clk);
     output reg [63:0] valE;
     output reg Cnd;
+    input clk;
     input [63:0] valA;
     input [63:0] valB;
     input [63:0] valC;
@@ -17,7 +18,7 @@ module execute(Cnd,valE,valA,valB,valC,icode,ifun);
     reg [63:0] aluB;
     reg [1:0] aluFun;
 
-    ALU_Wrapper X1(aluOF,aluOut,aluFun,aluA,aluB);
+    ALU_Wrapper X1(aluOF,aluOut,aluFun,aluB, aluA);
     
     initial begin
         OF = 0;
@@ -110,7 +111,7 @@ module execute(Cnd,valE,valA,valB,valC,icode,ifun);
             end
             else if (ifun == 6)
             begin
-                Cnd = ~(SF^OF) & ~ZF;
+                Cnd = !(SF^OF) & !ZF;
             end
         end
         else

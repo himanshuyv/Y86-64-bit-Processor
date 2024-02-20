@@ -18,7 +18,7 @@ module processor;
             end
         end
     endgenerate
-
+    
     initial
     begin
         $dumpfile("processor.vcd");
@@ -80,5 +80,10 @@ module processor;
     begin
         PC = pu_PC;
         stat = dm_stat;
+    end
+
+    initial
+    begin
+        $monitor("PC = %d, rax = %d ,rcx = %d, rdx = %d, rbx = %d, rsp = %d, rbp = %d, rsi = %d, rdi = %d, r8 = %d, r9 = %d, r10 = %d, r11 = %d, r12 = %d, r13 = %d, r14 = %d",PC,reg_file[0],reg_file[1],reg_file[2],reg_file[3],reg_file[4],reg_file[5],reg_file[6],reg_file[7],reg_file[8],reg_file[9],reg_file[10],reg_file[11],reg_file[12],reg_file[13],reg_file[14]);
     end
 endmodule

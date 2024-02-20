@@ -1,6 +1,7 @@
 module write_back(dstE, dstM, rA, rB, icode, Cnd);
     output reg [3:0] dstE;
     output reg [3:0] dstM;
+    input Cnd;
     input [3:0] icode;
     input [3:0] rA;
     input [3:0] rB;

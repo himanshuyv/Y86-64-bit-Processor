@@ -62,7 +62,7 @@ module processor;
     data_memory X4(valM, dm_stat, valA, valP, valE, icode, instr_valid, imem_error);
     wire [3:0] dstE;
     wire [3:0] dstM;
-    write_back X5(dstE, dstM, rA, rB, icode);
+    write_back X5(dstE, dstM, rA, rB, icode, Cnd);
     wire [63:0] pu_PC;
     PC_update X6(pu_PC, icode, valP, valC, valM, Cnd, clk);
     always @(*)

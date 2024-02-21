@@ -14,7 +14,7 @@ module instructionMemory(valRead0,valRead1,valRead2,valRead3,valRead4,valRead5,v
     reg [7:0] instructionMem [0:131];
     initial
     begin
-        $readmemb("./t3.txt",instructionMem);
+        $readmemb("./../TestCases/t3.txt",instructionMem);
     end
     always @(*)
     begin

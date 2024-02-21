@@ -8,19 +8,28 @@ module tb_execute;
     reg [63:0] valC;
     reg [3:0] icode;
     reg [3:0] ifun;
-    execute DUT(Cnd,valE,valA,valB,valC,icode,ifun);
+    reg clk;
+    execute DUT(Cnd,valE,valA,valB,valC,icode,ifun,clk);
     
     initial begin
         $dumpfile("tb_execute.vcd");
         $dumpvars(0,tb_execute);
     end
 
+    always
+    begin
+        #5
+        clk = ~clk;
+    end
+
     initial begin
+        clk <= 0;
         valA <= 5;
         valB <= 3;
         valC <= 7;
         icode <= 2;
         ifun <= 0;
+        #5
         #10
         icode <= 3;
         #10
@@ -55,92 +64,68 @@ module tb_execute;
         valA <= 0;
         #10
         ifun <= 1;
-        valA <= 1;
         #10
-        valA <= 0;
-        #10 
-        valA <= -1;
-        #10
-        ifun <= 2;
-        valA <= 1;
-        #10
-        valA <= 0;
-        #10 
-        valA <= -1;
-        #10
-        ifun <= 3;
-        valA <= 1;
-        #10
-        valA <= 0;
-        #10 
-        valA <= -1;
-        #10
-        ifun <= 4;
-        valA <= 1;
-        #10
-        valA <= 0;
-        #10 
-        valA <= -1;
-        #10
-        ifun <= 5;
-        valA <= 1;
-        #10
-        valA <= 0;
-        #10 
-        valA <= -1;
-        #10
-        ifun <= 6;
-        valA <= 1;
-        #10
-        valA <= 0;
-        #10 
-        valA <= -1;
-        #10
-        icode <= 7;
-        ifun <= 0;
-        valA <= 0;
-        #10
+        icode <= 6;
         ifun <= 1;
-        valA <= 1;
-        #10
-        valA <= 0;
+        valA <= 6;
+        valB <= 6;
         #10 
-        valA <= -1;
+        icode <= 2;
+        ifun <= 1;
+        #5
+        icode <= 6;
+        valB <= 1;
+        #5
+        icode <= 6;
+        valB <= 6;
         #10
+        icode <= 2;
         ifun <= 2;
-        valA <= 1;
-        #10
-        valA <= 0;
-        #10 
-        valA <= -1;
         #10
         ifun <= 3;
-        valA <= 1;
-        #10
-        valA <= 0;
-        #10 
-        valA <= -1;
         #10
         ifun <= 4;
-        valA <= 1;
-        #10
-        valA <= 0;
-        #10 
-        valA <= -1;
         #10
         ifun <= 5;
-        valA <= 1;
-        #10
-        valA <= 0;
-        #10 
-        valA <= -1;
         #10
         ifun <= 6;
-        valA <= 1;
         #10
-        valA <= 0;
-        #10 
-        valA <= -1;
+        icode <= 6;
+        ifun <= 1;
+        valA <= 8;
+        valB <= 6;
+        #10
+        icode <= 2;
+        ifun <= 1;
+        #10
+        ifun <= 2;
+        #10
+        ifun <= 3;
+        #10
+        ifun <= 4;
+        #10
+        ifun <= 5;
+        #10
+        ifun <= 6;
+        #10
+        icode <= 6;
+        ifun <= 1;
+        valA <= 4;
+        valB <= 6;
+        #10
+        icode <= 2;
+        ifun <= 1;
+        #10
+        ifun <= 2;
+        #10
+        ifun <= 3;
+        #10
+        ifun <= 4;
+        #10
+        ifun <= 5;
+        #10
+        ifun <= 6;
+        #10
         $finish;
     end
 

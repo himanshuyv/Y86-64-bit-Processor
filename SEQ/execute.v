@@ -44,6 +44,10 @@ module execute(Cnd,valE,valA,valB,valC,icode,ifun,clk);
         begin 
             aluA = 8;
         end
+        else
+        begin
+            aluA = 0;
+        end
 
         if (icode == 4 || icode == 5 || icode == 6 || icode == 8 || icode == 9 || icode == 10 || icode == 11)
         begin 
@@ -51,6 +55,10 @@ module execute(Cnd,valE,valA,valB,valC,icode,ifun,clk);
         end
         else if (icode == 2 || icode == 3)
         begin 
+            aluB = 0;
+        end
+        else
+        begin
             aluB = 0;
         end
 

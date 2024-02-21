@@ -11,15 +11,15 @@ module instructionMemory(valRead0,valRead1,valRead2,valRead3,valRead4,valRead5,v
     output reg [7:0] valRead9;
     output reg imem_error;
     input [63:0] PC;
-    reg [7:0] instructionMem [0:131];
+    reg [7:0] instructionMem [0:144];
     initial
     begin
-        $readmemb("./../TestCases/t3.txt",instructionMem);
+        $readmemb("./../TestCases/t2.txt",instructionMem);
     end
     always @(*)
     begin
         imem_error = 0;
-        if (PC>131)
+        if (PC>144)
         begin
             imem_error = 1;
         end

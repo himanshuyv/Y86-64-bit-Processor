@@ -1,0 +1,14 @@
+irmovq $4, %rax
+pushq %rax
+irmovq $9, %rdi
+pushq %rdi
+popq %rax
+popq %rax
+
+0x0000: 30f41400000000000000   | irmovq $20,%rsp
+0x000a: 30f00400000000000000   | irmovq $4, %rax
+0x0014: a00f                   | pushq %rax
+0x0016: 30f70900000000000000   | irmovq $9, %rdi
+0x0020: a07f                   | pushq %rdi
+0x0022: b00f                   | popq %rax
+0x0024: b00f                    | popq %rax

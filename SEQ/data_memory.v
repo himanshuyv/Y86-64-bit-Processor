@@ -61,11 +61,6 @@ module data_memory(valM, stat, valA, valP, valE, icode, instr_valid, imem_error,
         end
 
 
-        if (mem_write == 1)
-        begin
-            memReg[mem_addr] = mem_data;
-        end
-
         if (mem_read == 1)
         begin
             valM = memReg[mem_addr];
@@ -95,4 +90,12 @@ module data_memory(valM, stat, valA, valP, valE, icode, instr_valid, imem_error,
             stat = 4;
         end
     end
+    always@(negedge clk)
+    begin
+        if (mem_write == 1)
+        begin
+            memReg[mem_addr] = mem_data;
+        end
+    end
+
 endmodule

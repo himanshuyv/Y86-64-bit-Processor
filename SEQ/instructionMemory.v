@@ -11,10 +11,10 @@ module instructionMemory(valRead0,valRead1,valRead2,valRead3,valRead4,valRead5,v
     output reg [7:0] valRead9;
     output reg imem_error;
     input [63:0] PC;
-    reg [7:0] instructionMem [0:200];
+    reg [7:0] instructionMem [0:1023];
     initial
     begin
-        $readmemb("./../TestCases/t2.txt",instructionMem);
+        $readmemb("./../TestCases/t3.txt",instructionMem);
     end
     always @(*)
     begin

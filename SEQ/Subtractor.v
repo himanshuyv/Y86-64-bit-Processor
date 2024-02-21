@@ -22,7 +22,7 @@ module Subtractor(OF,Sum,A,B, enable);
             and and_inst1(Sum[i], enable, tempSum[i]);
         end
     endgenerate
-    xnor(AxnorB, A[63], Bcomplement[63]);
+    xor(AxnorB, A[63], B[63]);
     xnor(AxnorSum, B[63], tempSum[63]);
     and(OverFlow, AxnorB, AxnorSum);
     and and_inst3(OF, enable, OverFlow);

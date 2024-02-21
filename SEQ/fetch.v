@@ -26,7 +26,6 @@ module fetch(icode,ifun,rA,rB,valC,valP,instr_valid,imem_error,clk,PC);
         icode = im_out[0][7:4];
         ifun = im_out[0][3:0];   
         imem_error = imem_errorw;
-        instr_valid = 1;
         if(icode == 2 || icode == 3 || icode == 4 || icode == 5 ||icode == 6 || icode == 10 || icode == 11) 
         begin
             need_regids = 1; 
@@ -59,7 +58,10 @@ module fetch(icode,ifun,rA,rB,valC,valP,instr_valid,imem_error,clk,PC);
 
 
         valP = PC + 1 + need_regids + 8*need_valC;
-        
+        if(icode >= 0 && icode <= 11)
+        begin
+            instr_valid = 1;
+        end
         if ((icode == 0 || icode == 1 || icode == 3 || icode == 4 || icode == 5||icode == 8 || icode == 9 || icode == 10 || icode == 11) && ifun!=0)
         begin
             instr_valid = 0;

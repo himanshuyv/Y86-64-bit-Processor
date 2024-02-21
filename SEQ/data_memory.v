@@ -18,30 +18,65 @@ module data_memory(valM, stat, valA, valP, valE, icode, instr_valid, imem_error,
             end
         end
     endgenerate
-    reg [63:0] mem_address;
+    reg [63:0] mem_addr;
+    reg [63:0] mem_data;
+    reg mem_read;
+    reg mem_write;
     always @(*)
     begin
-        if(icode == 10 || icode == 8)
+        if(icode == 10 || icode == 8 || icode == 4 || icode == 5)
         begin
-            mem_address = valE;
+            mem_addr = valE;
         end
         else if(icode == 11 || icode == 9)
         begin 
-            mem_address = valA;
+            mem_addr = valA;
         end
+
+        if (icode == 4 || icode == 10)
+        begin
+            mem_data = valA;
+        end
+        else if (icode == 8)
+        begin
+            mem_data = valP;
+        end
+
+        if (icode == 5 || icode == 9 || icode == 11)
+        begin
+            mem_read = 1;
+        end
+        else
+        begin
+            mem_read = 0;
+        end
+
+        if (icode == 4 || icode == 8 || icode == 10)
+        begin
+            mem_write = 1;
+        end
+        else
+        begin
+            mem_write = 0;
+        end
+
+
+        if (mem_write == 1)
+        begin
+            memReg[mem_addr] = mem_data;
+        end
+
+        if (mem_read == 1)
+        begin
+            valM = memReg[mem_addr];
+        end
+
         dmemError =0;
-        if(mem_address > 8191)
+        if(mem_addr > 8191)
         begin
             dmemError = 1;
         end
-        if(icode == 10 || icode == 8)
-        begin
-            memReg[valE] = valP;
-        end
-        else if(icode == 11 || icode == 9)
-        begin 
-            valM = memReg[valA];
-        end
+
         if(instr_valid == 1)
         begin
             stat = 1;

@@ -1,14 +1,42 @@
+irmovq $100, %rsp
 irmovq $4, %rax
 pushq %rax
+irmovq $8, %rax
 irmovq $9, %rdi
-pushq %rdi
+subq %rax, %rdi
+cmovle %rdi, %rdx
+cmovge %rax, %rdx
+pushq %rdx
+cmovg %rax, %rdx
+cmovl %rdi, %rdx
+pushq %rdx
+irmovq $10, %rsi
+cmovne %rsi, %rdx
+pushq %rdx
 popq %rax
 popq %rax
+popq %rax
+popq %rax
+halt
 
-0x0000: 30f41400000000000000   | irmovq $20,%rsp
+
+0x0000: 30f46400000000000000   | irmovq $100, %rsp
 0x000a: 30f00400000000000000   | irmovq $4, %rax
 0x0014: a00f                   | pushq %rax
-0x0016: 30f70900000000000000   | irmovq $9, %rdi
-0x0020: a07f                   | pushq %rdi
-0x0022: b00f                   | popq %rax
-0x0024: b00f                    | popq %rax
+0x0016: 30f00800000000000000   | irmovq $8, %rax
+0x0020: 30f70900000000000000   | irmovq $9, %rdi
+0x002a: 6107                   | subq %rax, %rdi
+0x002c: 2172                   | cmovle %rdi, %rdx
+0x002e: 2502                   | cmovge %rax, %rdx
+0x0030: a02f                   | pushq %rdx
+0x0032: 2602                   | cmovg %rax, %rdx
+0x0034: 2272                   | cmovl %rdi, %rdx
+0x0036: a02f                   | pushq %rdx
+0x0038: 30f60a00000000000000   | irmovq $10, %rsi
+0x0042: 2462                   | cmovne %rsi, %rdx
+0x0044: a02f                   | pushq %rdx
+0x0046: b00f                   | popq %rax
+0x0048: b00f                   | popq %rax
+0x004a: b00f                   | popq %rax
+0x004c: b00f                   | popq %rax
+0x004e: 00                     | halt

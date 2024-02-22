@@ -16,6 +16,7 @@ pushq %rdx
 popq %rax
 popq %rax
 popq %rax
+nop
 popq %rax
 halt
 
@@ -38,5 +39,6 @@ halt
 0x0046: b00f                   | popq %rax
 0x0048: b00f                   | popq %rax
 0x004a: b00f                   | popq %rax
-0x004c: b00f                   | popq %rax
-0x004e: 00                     | halt
+0x004c: 10                     | nop
+0x004d: b00f                   | popq %rax
+0x004f: 00                     | halt

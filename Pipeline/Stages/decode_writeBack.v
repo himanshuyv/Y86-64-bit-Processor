@@ -19,7 +19,7 @@
 `define SINS 3
 `define SHLT 4
 
-module decode(D_stat, D_icode, D_ifun, D_rA, D_rB, D_valC, D_valP, e_dstE, e_valE, M_dstE, M_valE, M_dstM, m_valM, W_dstM, W_valM, W_dstE, W_valE, d_valA, d_valB, d_valC, d_dstE, d_dstM, clk);
+module decode_writeBack(d_stat, d_icode, d_ifun, d_valC, d_valA, d_valB ,d_dstE, d_dstM, d_srcA, d_srcB, D_stat, D_icode, D_ifun, D_rA, D_rB, D_valC, D_valP, e_dstE, e_valE, M_dstE, M_valE, M_dstM, m_valM, W_dstM, W_valM, W_dstE, W_valE, clk);
     output reg [2:0] d_stat;
     output reg [3:0] d_icode;
     output reg [3:0] d_ifun;
@@ -72,11 +72,11 @@ module decode(D_stat, D_icode, D_ifun, D_rA, D_rB, D_valC, D_valP, e_dstE, e_val
             end
         else if(D_icode == `IPOPQ || D_icode == `IRET)
             begin
-                d_srcA = 4;
+                d_srcA = `RESP;
             end
         else
             begin
-                d_srcA = 15;
+                d_srcA = `RNONE;
             end
         if(D_icode == `IRRMOVQ || D_icode == `IMRMOVQ || D_icode == `IOPQ)
             begin
@@ -84,11 +84,11 @@ module decode(D_stat, D_icode, D_ifun, D_rA, D_rB, D_valC, D_valP, e_dstE, e_val
             end
         else if(D_icode == `IPUSHQ || D_icode == `IPOPQ || D_icode == `ICALL || D_icode == `IRET)
             begin
-                d_srcB = 4;
+                d_srcB = `RESP;
             end
         else
             begin 
-                d_srcB = 15;
+                d_srcB = `RNONE;
             end
         d_rvalA = reg_file[d_srcA];
         d_rvalB = reg_file[d_srcB];
@@ -160,11 +160,11 @@ module decode(D_stat, D_icode, D_ifun, D_rA, D_rB, D_valC, D_valP, e_dstE, e_val
         end
         else if(D_icode == `IPUSHQ || D_icode == `IPOPQ || D_icode == `ICALL || D_icode == `IRET)
         begin
-            d_dstE = 4;
+            d_dstE = `RESP;
         end
         else
         begin
-            d_dstE = 15;
+            d_dstE = `RNONE;
         end
         if(D_icode == `IMRMOVQ || D_icode == `IPOPQ)
         begin
@@ -172,10 +172,15 @@ module decode(D_stat, D_icode, D_ifun, D_rA, D_rB, D_valC, D_valP, e_dstE, e_val
         end
         else
         begin
-            d_dstM = 15;
+            d_dstM = `RNONE;
         end
         reg_file[d_dstE] = W_valE;
         reg_file[d_dstM] = W_valM;
+    end
+
+    initial
+    begin
+        $monitor("rax = %d ,rcx = %d, rdx = %d, rbx = %d, rsp = %d, rbp = %d, rsi = %d, rdi = %d, r8 = %d, r9 = %d, r10 = %d, r11 = %d, r12 = %d, r13 = %d, r14 = %d, r15 = %d",reg_file[0],reg_file[1],reg_file[2],reg_file[3],reg_file[4],reg_file[5],reg_file[6],reg_file[7],reg_file[8],reg_file[9],reg_file[10],reg_file[11],reg_file[12],reg_file[13],reg_file[14], reg_file[15]);
     end
 
 endmodule

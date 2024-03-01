@@ -46,6 +46,7 @@ module fetch(f_stat,f_icode,f_ifun,f_rA,f_rB,f_valC,f_valP,f_predPC,F_predPC,M_i
     begin
         f_valP = 0;
         f_PC = 0;
+        f_stat = 1;
     end
 
     instructionMemory X1(im_out[0],im_out[1],im_out[2],im_out[3],im_out[4],im_out[5],im_out[6],im_out[7],im_out[8],im_out[9],imem_errorw,f_PC);
@@ -116,7 +117,7 @@ module fetch(f_stat,f_icode,f_ifun,f_rA,f_rB,f_valC,f_valP,f_predPC,F_predPC,M_i
         end
 
         // Stat logic
-        if(f_icode >= `IHALT && f_icode <= `IPOPQ)
+        if(f_icode < `IHALT && f_icode > `IPOPQ)
         begin
             f_stat = `SINS;
         end

@@ -19,7 +19,7 @@
 `define SINS 3
 `define SHLT 4
 
-module data_memory(M_stat, M_icode, M_Cnd, M_valE, M_valA, M_dstE, M_dstM, m_stat, m_icode, m_dstE, m_dstM, m_valE, m_valM);
+module data_memory(m_stat, m_icode, m_dstE, m_dstM, m_valE, m_valM, M_stat, M_icode, M_Cnd, M_valE, M_valA, M_dstE, M_dstM, clk);
     output reg [2:0] m_stat;
     output reg [3:0] m_icode;
     output reg [63:0] m_valE;

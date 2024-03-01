@@ -1,0 +1,27 @@
+irmovq $1,%rax
+irmovq $1,%rcx
+irmovq $10,%rsi
+irmovq $1,%rdi
+jmp test
+test:
+    rrmovq %rcx,%rbx
+    addq %rax,%rcx
+    rrmovq %rbx,%rax
+    subq %rdi,%rsi
+    jne test
+
+halt
+
+0x0000: 30f00100000000000000   | irmovq $1,%rax
+0x000a: 30f10100000000000000   | irmovq $1,%rcx
+0x0014: 30f60a00000000000000   | irmovq $10,%rsi
+0x001e: 30f70100000000000000   | irmovq $1,%rdi
+0x0028: 703100000000000000     | jmp test
+0x0031:                        | test:
+0x0031: 2013                   |     rrmovq %rcx,%rbx
+0x0033: 6001                   |     addq %rax,%rcx
+0x0035: 2030                   |     rrmovq %rbx,%rax
+0x0037: 6176                   |     subq %rdi,%rsi
+0x0039: 743100000000000000     |     jne test
+                               | 
+0x0042: 00                     | halt

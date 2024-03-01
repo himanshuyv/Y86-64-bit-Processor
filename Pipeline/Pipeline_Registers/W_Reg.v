@@ -10,7 +10,7 @@ module W_Reg(W_stat, W_icode, W_valE, W_valM, W_dstE, W_dstM, m_stat ,m_icode ,m
     input [63:0] m_valE;
     input [63:0] m_valM;
     input [3:0] m_dstE;
-    input [63:0] m_dstM;
+    input [3:0] m_dstM;
     input clk;
 
     always @(*)

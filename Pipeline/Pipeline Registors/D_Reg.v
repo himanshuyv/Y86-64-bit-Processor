@@ -14,7 +14,7 @@ module D_Reg(D_stat,D_icode,D_ifun,D_rA,D_rB,D_valC,D_valP,f_stat,f_icode,f_ifun
     input [63:0] f_valC;
     input [63:0] f_valP;
     input clk;
-    always @(posedge clk)
+    always @(*)
     begin
         D_stat = f_stat;
         D_icode = f_icode;

@@ -20,7 +20,7 @@
 `define SINS 3
 `define SHLT 4
 
-module execute(e_stat,e_icode,e_Cnd,e_valE,e_valA,e_dstE,e_dstM,E_stat,E_icode,E_ifun,E_valC,E_valA,E_valB,E_dstE,E_dstM,E_srcA,E_srcB,m_stat,W_stat,clk);
+module execute(e_stat,e_icode,e_Cnd,e_valE,e_valA,e_dstE,e_dstM,E_stat,E_icode,E_ifun,E_valC,E_valA,E_valB,E_dstE,E_dstM,E_srcA,E_srcB,set_CC,clk);
     output reg [2:0] e_stat;
     output reg [3:0] e_icode;
     output reg e_Cnd;
@@ -38,8 +38,7 @@ module execute(e_stat,e_icode,e_Cnd,e_valE,e_valA,e_dstE,e_dstM,E_stat,E_icode,E
     input [3:0] E_dstM;
     input [3:0] E_srcA;
     input [3:0] E_srcB;
-    input [2:0] m_stat;
-    input [2:0] W_stat;
+    input set_CC;
     input clk;
     reg ZF;
     reg SF;
@@ -49,7 +48,6 @@ module execute(e_stat,e_icode,e_Cnd,e_valE,e_valA,e_dstE,e_dstM,E_stat,E_icode,E
     reg [63:0] aluA;
     reg [63:0] aluB;
     reg [1:0] aluFun;
-    reg set_CC;
     ALU_Wrapper X1(aluOF,aluOut,aluFun,aluB, aluA);
     
     initial begin
@@ -110,9 +108,6 @@ module execute(e_stat,e_icode,e_Cnd,e_valE,e_valA,e_dstE,e_dstM,E_stat,E_icode,E
         end
 
         e_valE = aluOut;
-
-        // Set CC logic 
-
 
         if (set_CC==1)
         begin

@@ -58,7 +58,7 @@ module pipelineControl(F_stall, D_stall, D_bubble, E_bubble, M_bubble, W_stall, 
         end
 
 
-        if ((E_icode == `IJXX && e_Cnd == 0) || ((E_icode == `IMRMOVQ || E_icode == `IPOPQ) && (E_dstM == d_srcA || E_dstM == d_srcB)) == 0 && (D_icode == `IRET || E_icode == `IRET || M_icode == `IRET))
+        if ((E_icode == `IJXX && e_Cnd == 0) || !((E_icode == `IMRMOVQ || E_icode == `IPOPQ) && (E_dstM == d_srcA || E_dstM == d_srcB)) && (D_icode == `IRET || E_icode == `IRET || M_icode == `IRET))
         begin
             D_bubble = 1;
         end
@@ -94,7 +94,7 @@ module pipelineControl(F_stall, D_stall, D_bubble, E_bubble, M_bubble, W_stall, 
             W_stall = 0;
         end
 
-        if (E_icode == `IOPQ &&  (m_stat == `SADR || m_stat == `SINS || m_stat == `SHLT || W_stat == `SADR || W_stat == `SINS || W_stat == `SHLT) == 0)
+        if (E_icode == `IOPQ &&  !(m_stat == `SADR || m_stat == `SINS || m_stat == `SHLT || W_stat == `SADR || W_stat == `SINS || W_stat == `SHLT))
         begin
             set_CC = 1;
         end
@@ -105,4 +105,8 @@ module pipelineControl(F_stall, D_stall, D_bubble, E_bubble, M_bubble, W_stall, 
 
     end
 
+    initial
+    begin
+        $monitor("F_stall = %d, D_stall = %d, D_bubble = %d, E_bubble= %d, M_bubble = %d, W_stall = %d",F_stall,D_stall,D_bubble,E_bubble,M_bubble,W_stall);
+    end
 endmodule

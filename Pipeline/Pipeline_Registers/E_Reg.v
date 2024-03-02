@@ -1,4 +1,7 @@
-module E_Reg(E_stat, E_icode, E_ifun, E_valC, E_valA, E_valB, E_dstE, E_dstM, E_srcA, E_srcB, d_stat, d_icode, d_ifun, d_valC, d_valA, d_valB, d_dstE, d_dstM, d_srcA, d_srcB, clk);
+`define INOP 1
+`define FNONE 0
+
+module E_Reg(E_stat, E_icode, E_ifun, E_valC, E_valA, E_valB, E_dstE, E_dstM, E_srcA, E_srcB, d_stat, d_icode, d_ifun, d_valC, d_valA, d_valB, d_dstE, d_dstM, d_srcA, d_srcB, E_bubble, clk);
     output reg [2:0] E_stat;
     output reg [3:0] E_icode;
     output reg [3:0] E_ifun;
@@ -19,19 +22,28 @@ module E_Reg(E_stat, E_icode, E_ifun, E_valC, E_valA, E_valB, E_dstE, E_dstM, E_
     input [3:0] d_dstM;
     input [3:0] d_srcA;
     input [3:0] d_srcB;
+    input E_bubble;
     input clk;
 
     always @(posedge clk)
     begin
-      E_stat = d_stat;
-      E_icode = d_icode;
-      E_ifun = d_ifun;
-      E_valC = d_valC;
-      E_valA = d_valA;
-      E_valB = d_valB;
-      E_dstE = d_dstE;
-      E_dstM = d_dstM;
-      E_srcA = d_srcA;
-      E_srcB = d_srcB;
+      if (E_bubble != 1)
+      begin
+        E_stat = d_stat;
+        E_icode = d_icode;
+        E_ifun = d_ifun;
+        E_valC = d_valC;
+        E_valA = d_valA;
+        E_valB = d_valB;
+        E_dstE = d_dstE;
+        E_dstM = d_dstM;
+        E_srcA = d_srcA;
+        E_srcB = d_srcB;
+      end
+      else
+      begin
+        E_icode = `INOP;
+        E_ifun = `FNONE;
+      end
     end
 endmodule

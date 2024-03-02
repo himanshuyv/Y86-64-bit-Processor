@@ -14,7 +14,7 @@ module M_Reg(M_stat,M_icode,M_Cnd,M_valE,M_valA,M_dstE,M_dstM,e_stat,e_icode,e_C
     input [3:0] e_dstE;
     input [3:0] e_dstM;
     input clk;
-    always @(*)
+    always @(posedge clk)
     begin
         M_stat = e_stat;
         M_icode = e_icode;

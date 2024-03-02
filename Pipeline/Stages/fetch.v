@@ -68,7 +68,7 @@ module fetch(f_stat,f_icode,f_ifun,f_rA,f_rB,f_valC,f_valP,f_predPC,F_predPC,M_i
         end
     end
 
-    always @(negedge clk)
+    always @(*)
     begin
         f_icode = im_out[0][7:4];
         f_ifun = im_out[0][3:0];   

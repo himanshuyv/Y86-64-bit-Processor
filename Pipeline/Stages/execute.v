@@ -58,10 +58,12 @@ module execute(e_stat,e_icode,e_Cnd,e_valE,e_valA,e_dstE,e_dstM,E_stat,E_icode,E
         SF = 0;
     end
 
-    always @(negedge clk)
+
+    always @(*)
     begin
         e_icode = E_icode;
         e_stat = E_stat;
+        e_dstE = E_dstE;
         e_dstM = E_dstM;
         e_valA = E_valA;
         if (E_icode == `IRRMOVQ || E_icode == `IOPQ)

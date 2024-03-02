@@ -61,11 +61,12 @@ module decode_writeBack(d_stat, d_icode, d_ifun, d_valC, d_valA, d_valB ,d_dstE,
         end
     endgenerate
 
-    always@(negedge clk)
+    always@(*)
     begin
         d_stat = D_stat;
         d_icode = D_icode;
         d_ifun = D_ifun;
+        d_valC = D_valC;
         if(D_icode == `IRRMOVQ || D_icode ==`IRMMOVQ || D_icode == `IOPQ || D_icode == `IPUSHQ)
             begin
                 d_srcA = D_rA;
@@ -148,7 +149,7 @@ module decode_writeBack(d_stat, d_icode, d_ifun, d_valC, d_valA, d_valB ,d_dstE,
         end
     end
 
-    always @(posedge clk)
+    always @(*)
     begin
         if(D_icode == `IOPQ || D_icode == `IIRMOVQ)
         begin
@@ -174,8 +175,8 @@ module decode_writeBack(d_stat, d_icode, d_ifun, d_valC, d_valA, d_valB ,d_dstE,
         begin
             d_dstM = `RNONE;
         end
-        reg_file[d_dstE] = W_valE;
-        reg_file[d_dstM] = W_valM;
+        reg_file[W_dstE] = W_valE;
+        reg_file[W_dstM] = W_valM;
     end
 
     initial

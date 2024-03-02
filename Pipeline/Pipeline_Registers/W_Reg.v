@@ -13,7 +13,7 @@ module W_Reg(W_stat, W_icode, W_valE, W_valM, W_dstE, W_dstM, m_stat ,m_icode ,m
     input [3:0] m_dstM;
     input clk;
 
-    always @(*)
+    always @(posedge clk)
     begin
         W_stat = m_stat;
         W_icode = m_icode;

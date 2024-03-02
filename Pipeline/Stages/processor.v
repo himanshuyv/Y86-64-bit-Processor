@@ -39,7 +39,6 @@ module processor;
         $dumpvars(0,processor);
     end
 
-    reg [2:0] stat;
     
     always
     begin
@@ -48,14 +47,13 @@ module processor;
     end
 
     reg [63:0] f_predPC;
+    reg [2:0] stat;
 
     initial
     begin
-        stat = `SAOK;
         clk = 1;
         f_predPC = 0;
     end
-
     wire [63:0] F_predPC;
     wire [63:0] predPC;
     F_reg inst_F_Reg(F_predPC,f_predPC,clk);
@@ -127,15 +125,15 @@ module processor;
     wire [3:0] m_dstM;
     data_memory inst_data_mem(m_stat, m_icode, m_dstE, m_dstM, m_valE, m_valM, M_stat, M_icode, M_Cnd, M_valE, M_valA, M_dstE, M_dstM, clk);
     W_Reg inst_W_Reg(W_stat, W_icode, W_valE, W_valM, W_dstE, W_dstM, m_stat ,m_icode ,m_valE ,m_valM ,m_dstE ,m_dstM, clk);
-    always @(posedge clk)
+    always @(*)
     begin
-        f_predPC = predPC;
-        
+        stat = W_stat;
+        f_predPC = predPC; 
     end
 
-    always @(posedge clk)
+    always @(*)
     begin
-        if (D_stat != `SAOK || E_stat != `SAOK || M_stat != `SAOK || W_stat  != `SAOK)
+        if (stat  != `SAOK)
         begin
             $finish;
         end

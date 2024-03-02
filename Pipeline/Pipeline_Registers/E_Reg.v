@@ -21,7 +21,7 @@ module E_Reg(E_stat, E_icode, E_ifun, E_valC, E_valA, E_valB, E_dstE, E_dstM, E_
     input [3:0] d_srcB;
     input clk;
 
-    always @(*)
+    always @(posedge clk)
     begin
       E_stat = d_stat;
       E_icode = d_icode;
@@ -30,6 +30,7 @@ module E_Reg(E_stat, E_icode, E_ifun, E_valC, E_valA, E_valB, E_dstE, E_dstM, E_
       E_valA = d_valA;
       E_valB = d_valB;
       E_dstE = d_dstE;
+      E_dstM = d_dstM;
       E_srcA = d_srcA;
       E_srcB = d_srcB;
     end

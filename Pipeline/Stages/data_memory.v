@@ -47,8 +47,12 @@ module data_memory(m_stat, m_icode, m_dstE, m_dstM, m_valE, m_valM, M_stat, M_ic
     reg [63:0] mem_data;
     reg mem_read;
     reg mem_write;
-    always @(posedge clk)
+    always @(*)
     begin
+        m_valE = M_valE;
+        m_icode = M_icode;
+        m_dstE = M_dstE;
+        m_dstM = M_dstM;
         if(M_icode == `IPUSHQ || M_icode == `ICALL || M_icode == `IRMMOVQ || M_icode == `IMRMOVQ)
         begin
             mem_addr = M_valE;

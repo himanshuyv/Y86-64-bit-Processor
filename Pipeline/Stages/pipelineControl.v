@@ -105,8 +105,4 @@ module pipelineControl(F_stall, D_stall, D_bubble, E_bubble, M_bubble, W_stall, 
 
     end
 
-    initial
-    begin
-        $monitor("F_stall = %d, D_stall = %d, D_bubble = %d, E_bubble= %d, M_bubble = %d, W_stall = %d",F_stall,D_stall,D_bubble,E_bubble,M_bubble,W_stall);
-    end
 endmodule

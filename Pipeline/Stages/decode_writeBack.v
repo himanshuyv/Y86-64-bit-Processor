@@ -179,9 +179,9 @@ module decode_writeBack(d_stat, d_icode, d_ifun, d_valC, d_valA, d_valB ,d_dstE,
         reg_file[W_dstM] = W_valM;
     end
 
-    // initial
-    // begin
-    //     $monitor("rax = %d ,rcx = %d, rdx = %d, rbx = %d, rsp = %d, rbp = %d, rsi = %d, rdi = %d, r8 = %d, r9 = %d, r10 = %d, r11 = %d, r12 = %d, r13 = %d, r14 = %d, r15 = %d",reg_file[0],reg_file[1],reg_file[2],reg_file[3],reg_file[4],reg_file[5],reg_file[6],reg_file[7],reg_file[8],reg_file[9],reg_file[10],reg_file[11],reg_file[12],reg_file[13],reg_file[14], reg_file[15]);
-    // end
+    initial
+    begin
+        $monitor("rax = %d ,rcx = %d, rdx = %d, rbx = %d, rsp = %d, rbp = %d, rsi = %d, rdi = %d, r8 = %d, r9 = %d, r10 = %d, r11 = %d, r12 = %d, r13 = %d, r14 = %d, r15 = %d",reg_file[0],reg_file[1],reg_file[2],reg_file[3],reg_file[4],reg_file[5],reg_file[6],reg_file[7],reg_file[8],reg_file[9],reg_file[10],reg_file[11],reg_file[12],reg_file[13],reg_file[14], reg_file[15]);
+    end
 
 endmodule

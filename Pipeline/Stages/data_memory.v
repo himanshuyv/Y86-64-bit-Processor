@@ -37,7 +37,7 @@ module data_memory(m_stat, m_icode, m_dstE, m_dstM, m_valE, m_valM, M_stat, M_ic
     reg [63:0] memReg[0:8191];
     genvar i;
     generate
-        for (i=0; i<64;i = i+1)begin
+        for (i=0; i<200;i = i+1)begin
             initial begin
                 memReg[i] = 0;
             end
@@ -88,6 +88,11 @@ module data_memory(m_stat, m_icode, m_dstE, m_dstM, m_valE, m_valM, M_stat, M_ic
         if (mem_read == 1)
         begin
             m_valM = memReg[mem_addr];
+        end
+
+        if (mem_write == 1)
+        begin
+            memReg[mem_addr] = mem_data;
         end
 
         if(mem_addr > 8191)

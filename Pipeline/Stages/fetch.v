@@ -117,7 +117,7 @@ module fetch(f_stat,f_icode,f_ifun,f_rA,f_rB,f_valC,f_valP,f_predPC,F_predPC,M_i
         end
 
         // Stat logic
-        if(f_icode < `IHALT && f_icode > `IPOPQ)
+        if(f_icode < `IHALT || f_icode > `IPOPQ)
         begin
             f_stat = `SINS;
         end
@@ -128,6 +128,11 @@ module fetch(f_stat,f_icode,f_ifun,f_rA,f_rB,f_valC,f_valP,f_predPC,F_predPC,M_i
         else 
         begin
             f_stat = `SAOK;
+        end
+
+        if (f_icode == `IHALT)
+        begin
+            f_stat = `SHLT;
         end
 
         // if ((icode == `IHALT || icode == `INOP || icode == `IIRMOVQ || icode == `IRMMOVQ || icode == `IMRMOVQ || icode == `ICALL || icode == `IRET || icode == `IPUSHQ || icode == `IPOPQ) && ifun != `FNONE)

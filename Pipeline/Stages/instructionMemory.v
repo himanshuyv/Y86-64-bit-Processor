@@ -19,7 +19,7 @@ module instructionMemory(valRead0,valRead1,valRead2,valRead3,valRead4,valRead5,v
     always @(*)
     begin
         imem_error = 0;
-        if (PC > 22)
+        if (PC > 1023)
         begin
             imem_error = 1;
         end

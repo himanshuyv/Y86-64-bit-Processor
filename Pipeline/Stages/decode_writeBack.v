@@ -79,7 +79,7 @@ module decode_writeBack(d_stat, d_icode, d_ifun, d_valC, d_valA, d_valB ,d_dstE,
             begin
                 d_srcA = `RNONE;
             end
-        if(D_icode == `IRRMOVQ || D_icode == `IMRMOVQ || D_icode == `IOPQ)
+        if(D_icode == `IRMMOVQ || D_icode == `IMRMOVQ || D_icode == `IOPQ)
             begin
                 d_srcB = D_rB;
             end
